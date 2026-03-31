@@ -44,6 +44,8 @@ class Linear(Module):
         """
         Forward pass of the Linear layer.
 
+        why why why why why
+
         Inputs:
             x (Tensor):
                 Input Tensor of shape (..., in_features).
