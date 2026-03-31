@@ -42,3 +42,6 @@ def pytest_collection_modifyitems(config, items):
             selected.append(item)
 
     items[:] = selected
+
+#si bal?
+
