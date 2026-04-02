@@ -58,13 +58,18 @@ class Function:
             - Executes the forward pass.
             - Attaches this Function instance to the output Tensor as grad_fn.
         """
-        parents = tuple(as_tensor(x) for x in inputs)
+        parents = tuple(as_tensor(x) for x in inputs) #as_tensor : translate to tensor if it is not tensor
+        #for x in inputs : as_tensor(x)
         req = any(p.requires_grad for p in parents)
+        #any : if at least one is true for p in parents? --> true
         # TODO:
         # 1) Create a Context Object, run cls.forward(ctx, ...) to compute the output value. 
             # The forward method in its subclass will compute the forward pass and store necessary information for backward in the Context Object.
             # Make sure to pass the raw data (np.ndarray) instead of Tensor to the forward method for numerical computation.
-        
+        context = Context()
+        xs = [p.data for p in parents]
+        output = cls.forward(context, *xs) #<<context는 뭘 넣어야하는가?? 
+           
         # 2）Create the output Tensor (set data and requires_grad appropriately).
         
         # 3) Create the computation-graph node appropriately and attach it to the output Tensor (.grad_fn).
